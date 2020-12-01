@@ -1,0 +1,8 @@
+{
+  "weather":
+    {
+      "city": "chelyabinsk",
+      "temp": "+12",
+      "phrase": "cloudy"
+    }
+}
