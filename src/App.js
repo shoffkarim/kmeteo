@@ -8,7 +8,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="container">
-        <Welcome city="chelyabinsk"></Welcome>
+        <Welcome city="Chelyabinsk"></Welcome>
 
       </div>
     );

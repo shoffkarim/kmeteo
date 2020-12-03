@@ -11,19 +11,23 @@ export default class Welcome extends Component {
       data: "lol",
     }
 
-
+    this.getData = this.getData.bind(this);
   }
 
-  componentDidMount() {
+  getData(){
     axios
-    .get("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=3722e3bc2da944118e854829202411&q=Chelyabinsk,russia&num_of_days=2&tp=3&format=xml", {
+    .get(`http://api.worldweatheronline.com/premium/v1/weather.ashx?key=3722e3bc2da944118e854829202411&q=${ this.props.city },russia&num_of_days=2&tp=3&format=xml`, {
       "Content-Type": "application/xml; charset=utf-8"
      })
     .then(response => {
       this.setState({ data: response.data })
     })
-
   }
+
+  // componentDidMount() {
+
+
+  // }
 
   render() {
     return (
@@ -31,7 +35,8 @@ export default class Welcome extends Component {
         <h1 className="welcome__heading">Welcome to kmeteo</h1>пше
         <p>{ this.state.data }</p>
         <p className="welcome__text">Please, choose your city</p>
-        <input placeholder="choose your city"></input>
+        <input type="text" className="choose-city"></input>
+        <button onClick={this.getData}>click me</button>
       </div>
     );
   }
