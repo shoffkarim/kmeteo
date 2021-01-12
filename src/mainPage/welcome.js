@@ -9,6 +9,8 @@ export default class Welcome extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      hours: "",
+      minutes: "",
       data: "",
       xml: "",
       value: "",
@@ -18,6 +20,7 @@ export default class Welcome extends Component {
 
     this.getData = this.getData.bind(this);
     this.handleChange = this.handleChange.bind(this);
+
   }
 
   handleChange(event){
@@ -37,11 +40,16 @@ export default class Welcome extends Component {
       this.setState({temp_C: this.state.xml.data.current_condition[0].temp_C})
       console.log(this.state.xml.data.current_condition[0].temp_C)
     })
-
+    this.getTime();
     event.preventDefault();
 
   }
 
+  getTime() {
+    let date = new Date();
+    this.setState({ hours: date.getHours() });
+    this.setState({ minutes: date.getMinutes() });
+  }
 
   render() {
     return (
@@ -54,7 +62,9 @@ export default class Welcome extends Component {
           <input type="text" className="choose-city" value={ this.state.value } onChange={ this.handleChange }></input>
           <button>click me</button>
         </form>
+        <p>{ this.state.hours } { this.state.minutes }</p>
       </div>
+
     );
   }
 };
